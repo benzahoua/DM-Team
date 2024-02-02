@@ -26,7 +26,7 @@
       <div
         class="w-10 h-10 grid place-items-center order-2 lg:order-3 rounded-full border border-blue-pewter/40 cursor-pointer"
       >
-        <i-Heart class="text-xl text-dark-gunmetal" filled />
+        <i-Heart class="text-xl text-blue-pewter" />
       </div>
     </div>
   </header>

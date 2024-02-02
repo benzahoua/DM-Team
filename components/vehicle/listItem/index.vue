@@ -1,32 +1,38 @@
 <template>
   <div
+    v-if="vehicleInfo"
     class="w-full h-full max-w-[350px] min-w-[270px] max-h-[385px] lg:min-h-[385px] flex flex-col gap-2 p-4 lg:max-2xl:p-6 bg-white rounded-[10px]"
     :class="containerDirection ? 'min-h-[285px]' : 'min-h-[240px]'"
   >
-    <div class="w-full flex justify-between">
-      <h3
-        class="text-left font-primary text-dark-gunmetal font-bold text-base lg:text-lg"
-      >
-        Koenigsegg
-      </h3>
+    <div class="flex justify-between w-full">
+      <div class="flex flex-col">
+        <h3
+          class="text-base font-bold text-left font-primary text-dark-gunmetal lg:text-lg"
+        >
+          {{ vehicleInfo.name }}
+        </h3>
+        <h4
+          class="text-xs font-medium text-left capitalize font-primary lg:text-sm text-blue-pewter"
+        >
+          {{ vehicleInfo.type }}
+        </h4>
+      </div>
+
+      <i-Heart class="text-xl cursor-pointer" filled />
     </div>
-    <h4
-      class="text-left font-primary text-xs lg:text-sm font-medium text-blue-pewter capitalize"
-    >
-      sport
-    </h4>
+
     <div
-      class="flex flex-1 justify-between lg:flex-col gap-2"
+      class="flex justify-between flex-1 gap-2 lg:flex-col"
       :class="{ 'flex-col': containerDirection === 'stacked' }"
     >
-      <div class="flex-1 flex items-center justify-center">
-        <div class="relative h-full lg:h-auto flex mx-auto">
+      <div class="flex items-center justify-center flex-1">
+        <div class="relative flex h-full mx-auto lg:h-auto">
           <NuxtImg
-            src="/images/hero-section2.png"
+            :src="`${vehicleInfo.img}`"
             class="self-end lg:self-center w-[180px] md:w-[220px] object-contain"
           />
           <div
-            class="absolute bottom-0 h-1/3 inset-x-0 bg-gradient-to-t from-white to-transparent"
+            class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white to-transparent"
           />
         </div>
       </div>
@@ -37,15 +43,16 @@
         <VehicleListItemSpecs />
       </div>
     </div>
-    <div class="flex justify-between items-center py-2 lg:py-3 mt-5">
-      <p
-        class="font-primary font-bold text-base lg:text-lg xl:text-xl text-seconday-500"
-      >
-        $99.00/
-        <span class="ml-1 xl:text-sm text-xs text-blue-pewter">day</span>
-      </p>
+    <div class="flex items-center justify-between py-2 mt-5 lg:py-3">
+      <div>
+        <span class="text-base font-bold font-primary text-seconday-500">
+          ${{ vehicleInfo.pricePerDay?.toFixed(2) }}/
+        </span>
+        <span class="ml-1 text-xs xl:text-sm text-blue-pewter">day</span>
+      </div>
       <NuxtLink
-        class="px-3 py-2 rounded-md bg-blue-royal text-white text-sm max-sm:text-xs font-semibold capitalize cursor-pointer"
+        :to="`/vehicle/${vehicleInfo.id}`"
+        class="px-3 py-2 text-sm font-semibold text-white capitalize rounded-md cursor-pointer bg-blue-royal max-sm:text-xs"
       >
         rent now
       </NuxtLink>
@@ -55,6 +62,7 @@
 
 <script setup lang="ts">
 interface IProps {
+  vehicleInfo: IVehicle;
   containerDirection?: "stacked";
 }
 defineProps<IProps>();
