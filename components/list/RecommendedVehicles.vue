@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 const pageIndex = ref(1);
-const vehicles = ref([]);
+const vehicles = ref<IVehicle[]>([]);
 
 const fetchVehicles = async () => {
   const { data: fetchedVehicles } = await $fetch<{ data: IVehicle[] }>("/api/recommended", {

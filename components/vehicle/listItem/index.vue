@@ -40,7 +40,7 @@
         class="max-h-[75px] flex justify-between lg:flex-row"
         :class="containerDirection ? ' flex-row' : ' flex-col '"
       >
-        <VehicleListItemSpecs />
+        <VehicleListItemSpecs :vehicle-specs="vehicleInfo" />
       </div>
     </div>
     <div class="flex items-center justify-between py-2 mt-5 lg:py-3">
