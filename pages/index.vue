@@ -4,6 +4,6 @@
   >
     <Hero />
     <ListPopularVehicles />
-    <ListRecommendedVehicles />
+    <ListRecommendedVehicles :show-more-vehicles="true" />
   </div>
 </template>

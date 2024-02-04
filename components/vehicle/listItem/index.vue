@@ -1,8 +1,7 @@
 <template>
   <div
-    v-if="vehicleInfo"
-    class="w-full h-full max-w-[350px] min-w-[270px] max-h-[385px] lg:min-h-[385px] flex flex-col gap-2 p-4 lg:max-2xl:p-6 bg-white rounded-[10px]"
-    :class="containerDirection ? 'min-h-[285px]' : 'min-h-[240px]'"
+    class="w-full h-full max-h-[385px] lg:min-h-[385px] flex flex-col gap-2 p-4 bg-white rounded-[10px]"
+    :class="containerDirection ? 'min-w-[240px] md:min-w-[300px] min-h-[285px] md:min-h-[380px]' : 'min-h-[240px]'"
   >
     <div class="flex justify-between w-full">
       <div class="flex flex-col">
@@ -20,7 +19,7 @@
 
       <VehicleWishlistIcon
         :is-favorite="isFavoriteVehicle"
-        @update-is-favorite="toggleIsFavorite"
+        @update-is-favorite="toggleIsFavorite(vehicleInfo)"
       />
     </div>
 
@@ -32,7 +31,8 @@
         <div class="relative flex h-full mx-auto lg:h-auto">
           <NuxtImg
             :src="`${vehicleInfo.img}`"
-            class="self-end lg:self-center w-[180px] md:w-[220px] object-contain"
+            class="self-end lg:self-center w-[180px] md:w-[220px] min-w-[100] object-contain"
+            :class="{'w-[280px]' : !containerDirection }"
           />
           <div
             class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-white to-transparent"
@@ -41,9 +41,11 @@
       </div>
       <div
         class="max-h-[75px] flex justify-between lg:flex-row"
-        :class="containerDirection ? ' flex-row' : ' flex-col '"
+        :class="containerDirection ? ' flex-row' : ' flex-col gap-y-3'"
       >
-        <VehicleListItemSpecs :vehicle-specs="vehicleInfo" />
+        <VehicleListItemSpecs
+          :vehicle-specs="vehicleInfo"
+        />
       </div>
     </div>
     <div class="flex items-center justify-between py-2 mt-5 lg:py-3">
@@ -65,14 +67,20 @@
 
 <script setup lang="ts">
 interface IProps {
-  containerDirection?: "stacked";
   vehicleInfo: IVehicle;
+  containerDirection?: "stacked";
 }
 defineProps<IProps>();
 
 const isFavoriteVehicle = ref<boolean>(false);
 
-const toggleIsFavorite = (isFavorite: boolean) => {
-  isFavoriteVehicle.value = isFavorite;
+const toggleIsFavorite = (selectedVehicle: IVehicle) => {
+  isFavoriteVehicle.value = !isFavoriteVehicle.value;
+  const favoritesStore = useFavoritesVehicles();
+
+  isFavoriteVehicle.value 
+  ? favoritesStore.addFavoriteVehicle(selectedVehicle) 
+  : favoritesStore.removeFavoriteVehicle(selectedVehicle.id);
+
 };
 </script>
