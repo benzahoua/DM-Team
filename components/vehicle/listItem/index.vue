@@ -18,7 +18,10 @@
         </h4>
       </div>
 
-      <i-Heart class="text-xl cursor-pointer" filled />
+      <VehicleWishlistIcon
+        :is-favorite="isFavoriteVehicle"
+        @update-is-favorite="toggleIsFavorite"
+      />
     </div>
 
     <div
@@ -62,8 +65,14 @@
 
 <script setup lang="ts">
 interface IProps {
-  vehicleInfo: IVehicle;
   containerDirection?: "stacked";
+  vehicleInfo: IVehicle;
 }
 defineProps<IProps>();
+
+const isFavoriteVehicle = ref<boolean>(false);
+
+const toggleIsFavorite = (isFavorite: boolean) => {
+  isFavoriteVehicle.value = isFavorite;
+};
 </script>

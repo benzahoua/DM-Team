@@ -12,7 +12,7 @@
    Bash
 
 ```
-   git clone git@github.com:benzahoua/DM-Team.git
+   git clone https://github.com/benzahoua/DM-Team.git
 ```
 
 * Navigate to the project directory:

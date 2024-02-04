@@ -1,12 +1,10 @@
 <template>
-  <div v-if="!pending" class="flex flex-col gap-5">
+  <div class="flex flex-col gap-5">
     <div class="flex items-center justify-between lg:mx-4">
       <h2 class="font-semibold capitalize font-primary text-blue-pewter">
         popular car
       </h2>
-      <button
-        class="font-semibold capitalize cursor-pointer font-primary text-blue-royal"
-      >
+      <button class="font-semibold capitalize cursor-pointer font-primary text-blue-royal">
         view all
       </button>
     </div>
