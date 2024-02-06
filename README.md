@@ -5,6 +5,13 @@
 * **Node.js:** Ensure you have Node.js version 20 installed. You can check your current version using `node -v`. If necessary, download and install the appropriate version from [https://nodejs.org/](https://nodejs.org/).
 * **pnpm:** This project uses pnpm as the package manager. If you don't have it, install it globally using `npm install -g pnpm`.
 
+**Configuration:**
+
+1. Copy the contents of the `.env.example` file.
+2. Create a new file named `.env`.
+3. Paste the copied contents into the new `.env` file.
+4. Replace `<API_URL>` with the actual origin URL.
+
 **Installation:**
 
 * Clone this repository:
