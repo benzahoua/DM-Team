@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "nuxt-svgo",
     "@nuxt/image",
+    "nuxt-lodash",
     ["@pinia/nuxt", { autoImports: ["defineStore"] }],
   ],
   css: ["~/assets/sass/main.scss"],

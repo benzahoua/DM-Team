@@ -16,6 +16,7 @@ export default {
           royal: '#3563E9',
           jeans: '#54A6FF',
           pewter: '#90A3BF',
+          marble: '#596780'
         },
         dark: {
           gunmetal: '#1A202C',
@@ -27,4 +28,3 @@ export default {
     },
   },
 }
-

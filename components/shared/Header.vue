@@ -9,18 +9,8 @@
         <i-Logo class="mr-5 text-5xl text-blue-royal" />
       </NuxtLink>
 
-      <div
-        class="order-3 lg:order-2 flex w-full lg:flex-1 bg-white py-3 px-6 lg:px-5 max-lg:mt-4 lg:ml-16 lg:mr-8 rounded-[10px] lg:rounded-full border border-blue-pewter/40"
-      >
-        <i-Search
-          class="mr-2 text-xl cursor-pointer fill-none lg:mr-5"
-          filled
-        />
-        <input
-          type="search"
-          class="flex-1 text-sm font-medium outline-none text-blue-pewter font-primary"
-          placeholder="Search something here"
-        >
+      <div class="order-3 lg:order-2 flex w-full lg:flex-1 px-3">
+        <SharedSearch />
       </div>
 
       <div

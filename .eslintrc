@@ -1,3 +1,15 @@
 {
-  "extends": ["@nuxt/eslint-config"]
+  "extends": ["@nuxtjs/eslint-config-typescript"],
+  "rules": {
+    "no-console": "off",
+    "vue/html-self-closing": "off",
+    "semi": "off",
+    "quotes": "off",
+    "comma-dangle": "off",
+    "arrow-parens": "off",
+    "space-before-function-paren": "off",
+    "vue/multi-word-component-names": "off",
+    "vue/valid-v-on": "off",
+    "curly": "off"
+  }
 }

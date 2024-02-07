@@ -50,7 +50,7 @@
     </div>
     <div class="flex items-center justify-between py-2 mt-5 lg:py-3">
       <div>
-        <span class="text-base font-bold font-primary text-seconday-500">
+        <span class="text-base font-bold font-primary text-dark-gunmetal">
           ${{ vehicleInfo.pricePerDay?.toFixed(2) }}/
         </span>
         <span class="ml-1 text-xs xl:text-sm text-blue-pewter">day</span>
@@ -78,9 +78,8 @@ const toggleIsFavorite = (selectedVehicle: IVehicle) => {
   isFavoriteVehicle.value = !isFavoriteVehicle.value;
   const favoritesStore = useFavoritesVehicles();
 
-  isFavoriteVehicle.value 
-  ? favoritesStore.addFavoriteVehicle(selectedVehicle) 
-  : favoritesStore.removeFavoriteVehicle(selectedVehicle.id);
-
+  isFavoriteVehicle.value
+    ? favoritesStore.addFavoriteVehicle(selectedVehicle)
+    : favoritesStore.removeFavoriteVehicle(selectedVehicle.id);
 };
 </script>

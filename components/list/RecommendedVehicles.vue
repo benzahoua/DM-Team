@@ -6,7 +6,9 @@
       </h2>
     </div>
     <div class="flex flex-col gap-y-[50px] items-center justify-center">
-      <div class="grid justify-center w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div
+        class="grid justify-center w-full grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      >
         <VehicleListItem
           v-for="vehicle in vehicles"
           :key="vehicle.id"
@@ -14,10 +16,10 @@
         />
       </div>
       <button
-        v-if="showMoreVehicles"
+        v-if="isHome && lastPage !== pageIndex"
         type="button"
         class="w-fit h-[45px] px-5 text-white font-primary font-semibold rounded-[4px] bg-blue-royal capitalize"
-        @click="showVehicles"
+        @click="nextPage"
       >
         <span> show more cars </span>
       </button>
@@ -26,27 +28,30 @@
 </template>
 
 <script setup lang="ts">
-interface IProps {
-  showMoreVehicles?: Boolean;
-}
-defineProps<IProps>();
-const pageIndex = ref(1);
+const route = useRoute();
+const isHome = !route.params.id;
+
 const vehicles = ref<IVehicle[]>([]);
+const pageIndex = ref(1);
+const lastPage = ref<number | null>(null);
 
 const fetchVehicles = async () => {
-  const { data: fetchedVehicles } = await $fetch<{ data: IVehicle[] }>("/api/recommended", {
-    params: {
-      page: pageIndex.value,
-    },
-  });
-  vehicles.value.push(...fetchedVehicles);
+  const { data, meta } = await $fetch<{ data: IVehicle[]; meta: TMeta }>(
+    '/api/cars',
+    {
+      params: {
+        page: pageIndex.value,
+      },
+    }
+  );
+  vehicles.value.push(...data);
+  lastPage.value = meta.last_page;
 };
 
 await fetchVehicles();
 
-const showVehicles = async () => {
+const nextPage = async () => {
   pageIndex.value++;
   await fetchVehicles();
 };
-
 </script>
